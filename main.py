@@ -1,5 +1,7 @@
 import random
 import string
+from dbconnect import store_in_mongodb, fetch_from_mongodb
+from encrypt import encrypt, decrypt
 
 def generate_password(length=24):
     """Generate a unique password."""
@@ -16,21 +18,35 @@ def check_unique(password, existing_passwords):
     """Check if the generated password is unique."""
     return password not in existing_passwords
 
-def main(num_credentials=1, length=24):
+def push(num_credentials=1, length=24):
     """Generate and store credentials in MongoDB."""
-    existing_passwords = set()
     generated_credentials = []
     
     while len(generated_credentials) < num_credentials:
         application = input("Enter the application: ")
         username = input("Enter the username: ")
+        master_password = input("Enter the master password: ")
         password = generate_password(length)
-        if check_unique(password, existing_passwords):
-            existing_passwords.add(password)
-            generated_credentials.append({"application": application, "username": username, "password": password})
+
+        encrypted_password, salt = encrypt(password, master_password)
+        generated_credentials.append({"application": application, 
+                                      "username": username, 
+                                      "encrypted_password": encrypted_password, 
+                                      "salt": salt})
     print(generated_credentials)
-    # store_in_mongodb(generated_credentials)
+    store_in_mongodb(generated_credentials)
     print("Credentials stored in MongoDB.")
 
+def fetch():
+    try:
+        master_password = input("Enter the master password: ")
+        
+        username, encrypted_password, salt = fetch_from_mongodb("gitmap")
+        decrypted_password = decrypt(encrypted_password, salt, master_password)
+        print("Your password is:", decrypted_password)
+    except Exception as e:
+        print("Wrong master password", e)
+
 if __name__ == "__main__":
-    main()
+    # push()
+    fetch()

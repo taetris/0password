@@ -13,7 +13,7 @@ def derive_key(master_password, salt):
         backend=default_backend()
     )
     key = kdf.derive(master_password.encode())
-    print("key:", key)
+    # print("key:", key)
     return base64.urlsafe_b64encode(key)
 
 def encrypt_password(password, master_password):
@@ -21,22 +21,18 @@ def encrypt_password(password, master_password):
     
     key = derive_key(master_password, salt)
     cipher = Fernet(key)
-    print("salt:", salt, "\n cipher:", cipher)
+    # print("salt:", salt, "\n cipher:", cipher)
     encrypted_password = cipher.encrypt(password.encode())
     return encrypted_password, salt
 
-def decrypt_password(encrypted_password, salt, master_password):
+def decrypt(encrypted_password, salt, master_password):
     key = derive_key(master_password, salt)
     cipher = Fernet(key)
     decrypted_password = cipher.decrypt(encrypted_password).decode()
     return decrypted_password
 
-# Example usage:
-master_password = "my_master_password"
-password_to_encrypt = "my_password"
-
-encrypted_password, salt = encrypt_password(password_to_encrypt, master_password)
-print("Encrypted password:", encrypted_password)
-
-decrypted_password = decrypt_password(encrypted_password, salt, master_password)
-print("Decrypted password:", decrypted_password)
+def encrypt(password_to_encrypt, master_password):
+    encrypted_password, salt = encrypt_password(password_to_encrypt, master_password)
+    # print("Encrypted password:", encrypted_password)
+    
+    return encrypted_password, salt
