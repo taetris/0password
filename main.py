@@ -1,7 +1,8 @@
 import random
 import string
-from dbconnect import store_in_mongodb, fetch_from_mongodb
+from dbconnect import store_in_mongodb, fetch_from_mongodb, store_salt, fetch_salt
 from encrypt import encrypt, decrypt
+import pyperclip
 
 def generate_password(length=24):
     """Generate a unique password."""
@@ -21,6 +22,7 @@ def check_unique(password, existing_passwords):
 def push(num_credentials=1, length=24):
     """Generate and store credentials in MongoDB."""
     generated_credentials = []
+    generated_salt = []
     
     while len(generated_credentials) < num_credentials:
         application = input("Enter the application: ")
@@ -31,19 +33,31 @@ def push(num_credentials=1, length=24):
         encrypted_password, salt = encrypt(password, master_password)
         generated_credentials.append({"application": application, 
                                       "username": username, 
-                                      "encrypted_password": encrypted_password, 
-                                      "salt": salt})
+                                      "encrypted_password": encrypted_password
+                                      })
+        generated_salt.append({"application": application,
+                               "salt": salt})
     print(generated_credentials)
     store_in_mongodb(generated_credentials)
-    print("Credentials stored in MongoDB.")
+    store_salt(generated_salt)
+
+    print("Storage Successful.")
+
+def copy_to_clipboard(variable):
+    pyperclip.copy(str(variable))
+    print("Variable copied to clipboard.")
+
 
 def fetch():
     try:
         master_password = input("Enter the master password: ")
-        
-        username, encrypted_password, salt = fetch_from_mongodb("gitmap")
+        application = input("Enter application: ")
+        username, encrypted_password = fetch_from_mongodb(application)
+        salt = fetch_salt(application)
         decrypted_password = decrypt(encrypted_password, salt, master_password)
+        copy_to_clipboard(decrypted_password)
         print("Your password is:", decrypted_password)
+        
     except Exception as e:
         print("Wrong master password", e)
 
