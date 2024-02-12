@@ -55,8 +55,9 @@ def fetch():
         username, encrypted_password = fetch_from_mongodb(application)
         salt = fetch_salt(application)
         decrypted_password = decrypt(encrypted_password, salt, master_password)
+        
+        print("Your username is:", username)
         copy_to_clipboard(decrypted_password)
-        print("Your password is:", decrypted_password)
         
     except Exception as e:
         print("Wrong master password", e)
