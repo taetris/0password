@@ -1,6 +1,6 @@
 import random
 import string
-from dbconnect import store_in_mongodb, fetch_from_mongodb, store_salt, fetch_salt
+from dbconnect import store, fetch
 from encrypt import encrypt, decrypt
 import pyperclip
 
@@ -38,8 +38,7 @@ def push(num_credentials=1, length=24):
         generated_salt.append({"application": application,
                                "salt": salt})
     print(generated_credentials)
-    store_in_mongodb(generated_credentials)
-    store_salt(generated_salt)
+    store(generated_credentials, generated_salt)
 
     print("Storage Successful.")
 
@@ -48,14 +47,13 @@ def copy_to_clipboard(variable):
     print("Variable copied to clipboard.")
 
 
-def fetch():
+def pull():
     try:
         master_password = input("Enter the master password: ")
         application = input("Enter application: ")
-        username, encrypted_password = fetch_from_mongodb(application)
-        salt = fetch_salt(application)
+        username, encrypted_password, salt = fetch(application)
         decrypted_password = decrypt(encrypted_password, salt, master_password)
-        
+
         print("Your username is:", username)
         copy_to_clipboard(decrypted_password)
         
@@ -64,4 +62,4 @@ def fetch():
 
 if __name__ == "__main__":
     # push()
-    fetch()
+    pull()
