@@ -1,0 +1,21 @@
+""" ----------------TO DO----------------------------
+    - v
+    - autofiller
+    - try-catch here in all blocks and if one failed then all reverted, ofcourse returning from all these functions
+    - putting other functions in another file
+    - where to really store
+    - alternatives to master password: Zero knowledge authentication
+    - storing backups SAFELY
+    - How to make an extension and work in background
+    ----------------DONE------------------------------
+    - Store and retrieve salts in a separate database
+    - How to interface with applications : clipboard
+    ----------------CAN BE DONE------------------------------
+    - agile and scrum
+    - AWS Lambda and MongoDB
+    - JSON webtokens 
+    - Github actions for release build for CI/CD
+    ----------------IDEAS REJECTED---------------------------
+    - MongoDB not very compatible with Django (mostly supports tabular databases)
+    - small project, so flask chosen
+    """
