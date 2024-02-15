@@ -1,5 +1,5 @@
 """ ----------------TO DO----------------------------
-    - v
+    - flask
     - autofiller
     - try-catch here in all blocks and if one failed then all reverted, ofcourse returning from all these functions
     - putting other functions in another file
