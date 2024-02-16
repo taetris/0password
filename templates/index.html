@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <script>
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById("password");
+            var toggleButton = document.getElementById("toggleButton");
+            
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleButton.textContent = "Hide";
+            } else {
+                passwordField.type = "password";
+                toggleButton.textContent = "Show";
+            }
+        }
+
+        function adjustInputWidth() {
+            var passwordField = document.getElementById("password");
+            passwordField.style.width = passwordField.value.length + "ch";
+        }
+    </script>
+    <style>
+        input[type="password"] {
+            width: auto; /* Resetting to auto width initially */
+        }
+    </style>
+</head>
+<body>
+    <h1>Password Generator</h1>
+    <form action="/generate" method="post">
+       
+    </form>
+    {% if password %}
+        <h2>Generated Password:</h2>
+        <input type="password" id="password" value="{{ password }}" disabled oninput="adjustInputWidth()">
+        <button id="toggleButton" onclick="togglePasswordVisibility()">Show</button>
+    {% endif %}
+</body>
+</html>
+

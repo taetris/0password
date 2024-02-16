@@ -1,23 +1,9 @@
-import random
-import string
 from dbconnect import store, fetch
 from encrypt import encrypt, decrypt
-import pyperclip
+from clipboard import copy_to_clipboard
+from pwgenerate import generate_password
 
-def generate_password(length=24):
-    """Generate a unique password."""
-    characters = string.ascii_letters + string.digits + string.punctuation
-    while True:
-        password = ''.join(random.choice(characters) for _ in range(length))
-        if (any(c.islower() for c in password)
-                and any(c.isupper() for c in password)
-                and any(c.isdigit() for c in password)
-                and any(c in string.punctuation for c in password)):
-            return password
-
-def check_unique(password, existing_passwords):
-    """Check if the generated password is unique."""
-    return password not in existing_passwords
+# --------DB OPERATIONS---------
 
 def push(num_credentials=1, length=24):
     """Generate and store credentials in MongoDB."""
@@ -41,11 +27,7 @@ def push(num_credentials=1, length=24):
     store(generated_credentials, generated_salt)
 
     print("Storage Successful.")
-
-def copy_to_clipboard(variable):
-    pyperclip.copy(str(variable))
-    print("Variable copied to clipboard.")
-
+    return password
 
 def pull():
     try:
