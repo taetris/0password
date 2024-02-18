@@ -4,3 +4,8 @@ chromium.runtime.onMessage.addListener((message, sender, sendResponse) => {
     }
   });
   
+  chromium.runtime.onMessage.addEventListener("click", () => {
+    if (message.action === 'showAlert') {
+      alert('Login page detected!'); // Change this to your desired alert mechanism
+    }
+  });
