@@ -1,5 +1,5 @@
-from pymongo import MongoClient
-from pymongo.errors import ConnectionFailure, OperationFailure
+from pymongo import MongoClient, ASCENDING
+from pymongo.errors import ConnectionFailure, OperationFailure, DuplicateKeyError
 import creds
 import certifi
 
@@ -38,18 +38,19 @@ def store(generated_credentials, generated_salt):
         print("Error occurred:", e)
         session.abort_transaction()
         print("Transaction aborted. Rollback successful.")
+    
+
+# stores the credentials in the creds_db_name collection
+def store_credentials(credentials, db):
+    collection = db[creds_db_name]
+    collection.create_index([('application', ASCENDING)], unique=True)
+    collection.insert_one(credentials)
 
 # stores the salt in the salt_db_name collection
 def store_salt(salt, db):
 
     collection = db[salt_db_name]
-    collection.insert_many(salt)
-
-# stores the credentials in the creds_db_name collection
-def store_credentials(credentials, db):
-    collection = db[creds_db_name]
-    collection.insert_many(credentials) 
-
+    collection.insert_one(salt)
 # ------------------------------------------------------
     # Fetching
 
@@ -102,3 +103,5 @@ def fetch_salt(application, db):
 def ssl_connect():
     ca = certifi.where()
     return ca
+# ---------------------------------------------------------------
+

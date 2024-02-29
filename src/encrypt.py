@@ -38,10 +38,9 @@ def derive_key(master_password, salt):
 
 # encrypts using the master password
 def encrypt_password(password, master_password):
-    # salt_length =16
-    # salt = str(secrets.token_bytes(salt_length))
+    salt_length =16
+    salt = str(secrets.token_bytes(salt_length))
     
-    salt = "some_salt_here"
     key = derive_key(master_password, salt)
     cipher = Fernet(key)
     

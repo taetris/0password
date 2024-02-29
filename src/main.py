@@ -31,7 +31,7 @@ def push(num_credentials=1, length=24):
     print(generated_credentials)
     store(generated_credentials, generated_salt)
 
-    print("Storage Successful.")
+    print("\nStorage Successful.")
     # return password
 
 # actual operation used to get the decrypted password in the clipboard

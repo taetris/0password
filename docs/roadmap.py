@@ -18,6 +18,7 @@
     - How to interface with applications : clipboard
     ----------------CAN BE DONE------------------------------
     - having to whitelist your IP every single time
+    - how to handle duplicate entries
     - agile and scrum
     - AWS Lambda and MongoDB
     - JSON webtokens 
