@@ -11,11 +11,9 @@ creds_db_name = "creds"
 def connect_mongoDB():
     
     try: 
-        ca = ssl_connect()
-        cluster = MongoClient(creds.client, tlsCAFile=ca) 
+        cluster = MongoClient(creds.client) 
     except ConnectionFailure:
         print("Could not connect to MongoDB")
-        exit()
     else:
         return cluster
 # -----------------------------------------------------------------------------------------
@@ -99,9 +97,5 @@ def fetch_salt(application, db):
         salt = doc.get("salt")
         return salt
 
-# ------------------------------------------------------
-def ssl_connect():
-    ca = certifi.where()
-    return ca
 # ---------------------------------------------------------------
 
