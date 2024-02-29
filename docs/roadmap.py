@@ -17,6 +17,7 @@
     - Store and retrieve salts in a separate database
     - How to interface with applications : clipboard
     ----------------CAN BE DONE------------------------------
+    - having to whitelist your IP every single time
     - agile and scrum
     - AWS Lambda and MongoDB
     - JSON webtokens 
@@ -24,4 +25,4 @@
     ----------------IDEAS REJECTED---------------------------
     - MongoDB not very compatible with Django (mostly supports tabular databases)
     - small project, so flask chosen
-    """-
+    """

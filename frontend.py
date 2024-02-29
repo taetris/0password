@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
-from pwgenerate import generate_password
-from main import push, pull
-from clipboard import copy_to_clipboard
+from src.pwgenerate import generate_password
+from src.main import push, pull
+from src.clipboard import copy_to_clipboard
 app = Flask(__name__)
 
 
