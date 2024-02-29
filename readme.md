@@ -12,8 +12,6 @@ Important Notes:
 
 1. the creds.py currently contains the following information:
     client = "mongodb+srv://xxxx@clusteruno.xxxx.mongodb.net/"
-    default_master_password = "xxxx"
-    default_username = "xxxx"
 
 Basic Troubleshooting:
 
