@@ -1,4 +1,4 @@
-A simple cmd line password manager I made for myself that generates passwords,  and uses Argon2 for encryption and stores your passwords at your provided database and fetches and copies it to your clipboard when you retrieve it by the website name.
+A simple cmd line password manager I made for myself that generates passwords,  and uses Argon2 for encryption and stores your passwords at your provided database and fetches and copies it to your clipboard when you retrieve it by the website name. Its uses a master password to manage all other passwords, hence 0password.
 
 Download all dependencies from requirements.txt in a virtual environment and run the main.py file in the src folder.
 
