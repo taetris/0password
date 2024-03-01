@@ -3,10 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Alert</title>
+  <title>Password Manager</title>
+  <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <h1>Login Alert</h1>
-  <p>An alert will be triggered whenever a login page is detected.</p>
+  <form id="passwordForm">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+    <label for="application">Application:</label><br>
+    <input type="text" id="application" name="application"><br>
+    <label for="masterPassword">Master Password:</label><br>
+    <input type="password" id="masterPassword" name="masterPassword"><br><br>
+    <input type="submit" value="Submit">
+  </form>
+  <script src="popup.js"></script>
 </body>
 </html>

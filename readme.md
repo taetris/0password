@@ -18,4 +18,4 @@ Basic Troubleshooting:
 1. SSL handshake errors:
 - Always whitelist your IP on mongodb before you try to access.
 
-2. Always make a virtual environment and source it before you try to run the program.
+2. Recheck that you have sourced your virtual environment.

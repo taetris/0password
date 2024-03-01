@@ -1,7 +1,7 @@
 from pymongo import MongoClient, ASCENDING
 from pymongo.errors import ConnectionFailure, OperationFailure, DuplicateKeyError
-import creds
-import certifi
+from . import creds
+
 
 cluster_name = "2password"
 salt_db_name = "noon"
