@@ -8,15 +8,12 @@ app = Flask(__name__)
 def generate_credentials():
     # Get parameters from the request (assuming JSON payload)
     data = request.json
-
     application = data.get('application')
     username = data.get('username')
-    
-    num_credentials = data.get('num_credentials', 1)
     length = data.get('length', 24)
 
-    # Call your existing function
-    password = push(num_credentials, length)
+    # Call the push function with provided parameters
+    password = push(application, username, length)
 
     # Return the generated password as JSON response
     return jsonify({'password': password}), 200

@@ -12,33 +12,34 @@ def inputs():
     return application, username
 
 # actual operations to generate password and store in MongoDB.
-def push(num_credentials=1, length=24):
-    # application, username = inputs()
-
-    generated_credentials = []
-    generated_salt = []
+def push(application, username, length=24):
+    # Get master password
+    master_password = default_master_password
     
-    while len(generated_credentials) < num_credentials:
-
-        master_password = default_master_password
-
-        if not username:
-            username = default_username
+    # If username is not provided, use default
+    if not username:
+        username = default_username
         
-        password = generate_password(length)
+    # Generate password
+    password = generate_password(length)
 
-        encrypted_password, salt = encrypt(password, master_password)
-        generated_credentials.append({"application": application, 
-                                      "username": username, 
-                                      "encrypted_password": encrypted_password
-                                      })remove
-        generated_salt.append({"application": application,
-                               "salt": salt})
-    print(generated_credentials)
-    store(generated_credentials, generated_salt)
+    # Encrypt password
+    encrypted_password, salt = encrypt(password, master_password)
+
+    # Create credentials dictionary
+    credentials = {
+        "application": application,
+        "username": username,
+        "encrypted_password": encrypted_password,
+        "salt": salt
+    }
+
+    # Store credentials
+    store([credentials])
 
     print("\nStorage Successful.")
     return password
+
 
 # actual operation used to get the decrypted password in the clipboard
 def pull():
@@ -59,7 +60,8 @@ def pull():
 if __name__ == "__main__":
     option = sys.argv[1]
     if option == "push":
-        push()
+        application, username = inputs()
+        push(application, username)
     elif option == "pull":
         pull()
     else:
