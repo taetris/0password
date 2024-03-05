@@ -1,4 +1,8 @@
 """ 
+    Notes:
+    -flask --app frontend run
+    
+    
     - at this point, kinda unsure what to do: we're following 2 tangents here: building an extension and an actually app
     - and both seem to be logically distinct from each other for this reason, will take this at hault here
 ----------------TO DO----------------------------
