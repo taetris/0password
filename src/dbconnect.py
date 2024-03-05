@@ -34,7 +34,6 @@ def store(generated_credentials, generated_salt):
 
     except OperationFailure as e:
         print("Error occurred:", e)
-        session.abort_transaction()
         print("Transaction aborted. Rollback successful.")
     
 
@@ -48,6 +47,7 @@ def store_credentials(credentials, db):
 def store_salt(salt, db):
 
     collection = db[salt_db_name]
+    collection.create_index([('application', ASCENDING)], unique=True)
     collection.insert_one(salt)
 # ------------------------------------------------------
     # Fetching
@@ -64,7 +64,7 @@ def fetch(application):
             print("Both data fetched successfully")
     except OperationFailure as e:
         print("Error occurred:", e)
-        session.abort_transaction()
+        
         print("Transaction aborted. Rollback successful.")
     else:
         return username, encrypted_password, salt

@@ -27,17 +27,20 @@ def push(application, username, length=24):
     encrypted_password, salt = encrypt(password, master_password)
 
     # Create credentials dictionary
-    credentials = {
+    credentials_dict = {
         "application": application,
         "username": username,
         "encrypted_password": encrypted_password,
+        
+    }
+    salt_dict = {
+        "application": application,
         "salt": salt
     }
-
     # Store credentials
-    store([credentials])
+    store(credentials_dict, salt_dict)
 
-    print("\nStorage Successful.")
+    print("\nProcess finished.")
     return password
 
 

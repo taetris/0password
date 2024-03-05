@@ -5,8 +5,8 @@ url = 'http://localhost:5000/suggestor'  # Update the URL if necessary
 
 # JSON data to send in the request
 data = {
-    'application': 'your_application_name',  # Replace 'your_application_name' with the actual application name
-    'username': 'your_username',  # Replace 'your_username' with the actual username
+    'application': 'flipkart',  # Replace 'your_application_name' with the actual application name
+    'username': 'user8',  # Replace 'your_username' with the actual username
     'length': 24
 }
 

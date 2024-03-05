@@ -13,10 +13,10 @@ def generate_credentials():
     length = data.get('length', 24)
 
     # Call the push function with provided parameters
-    # password = push(application, username, length)
+    password = push(application, username, length)
 
     # Return the generated password as JSON response
-    return jsonify({'password': 'passwordyy'}), 200
+    return jsonify({'password': password}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
