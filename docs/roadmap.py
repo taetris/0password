@@ -7,7 +7,7 @@
     - and both seem to be logically distinct from each other for this reason, will take this at hault here
 ----------------TO DO----------------------------
     - connect input to ui
-    
+    - hanlding no internet test case
     - first generate should also copy to clipboard
     - can use API ninjas
     - if entry already exists, then should not overwrite, should not have duplicates
