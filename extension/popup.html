@@ -8,13 +8,19 @@
 </head>
 <body>
   <form id="passwordForm">
-    <label for="username">Usernamei:</label><br>
+    <label for="username">Username:</label><br>
     <input type="text" id="username" name="username"><br>
     <label for="application">Application:</label><br>
     <input type="text" id="application" name="application"><br>
     
     <input type="submit" value="Submit">
   </form>
+
+  <div id="passwordContainer" style="display: none;">
+    <p id="passwordText"></p>
+    <button id="copyButton">Copy to Clipboard</button>
+</div>
+
   <script src="popup.js"></script>
 </body>
 </html>
