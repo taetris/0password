@@ -1,3 +1,6 @@
+'''removed since copy action done from UI'''
+
+
 import pyperclip
 
 # copies the password to clipboard

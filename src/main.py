@@ -1,6 +1,5 @@
 from .dbconnect import store, fetch
 from .encrypt import encrypt, decrypt
-from .clipboard import copy_to_clipboard
 from .pwgenerate import generate_password
 from .creds import  default_username, default_master_password
 import sys
@@ -53,7 +52,7 @@ def pull():
         decrypted_password = decrypt(encrypted_password, salt, master_password)
 
         print("\n Your username is:", username)
-        copy_to_clipboard(decrypted_password)
+        
 
         # the entire decryption method fails if wrong master password 
     except Exception as e:

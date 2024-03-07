@@ -38,7 +38,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const password = passwordText.textContent.replace('Generated Password: ', '');
     navigator.clipboard.writeText(password)
     .then(() => {
-      alert('Password copied to clipboard.');
+      copiedNote.textContent = 'Copied!';
+      copiedNote.style.display = 'block';
     })
     .catch(error => {
       console.error('Error:', error);
