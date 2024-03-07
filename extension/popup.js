@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const passwordContainer = document.getElementById('passwordContainer');
   const passwordText = document.getElementById('passwordText');
   const copyButton = document.getElementById('copyButton');
+  const togglePasswordVisibilityButton = document.getElementById('togglePasswordVisibility');
 
   form.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
     .then(data => {
       const password = data.password;
       passwordText.textContent = 'Generated Password: ' + password;
+      passwordText.style.display = 'inline-block';
       passwordContainer.style.display = 'block';
     })
     .catch(error => {
@@ -33,7 +35,12 @@ document.addEventListener('DOMContentLoaded', function () {
       alert('Error generating password. Please try again.');
     });
   });
-
+  togglePasswordVisibilityButton.addEventListener('click', function () {
+    const isPasswordVisible = passwordText.style.display !== 'none';
+    passwordText.style.display = isPasswordVisible ? 'none' : 'inline-block';
+    togglePasswordVisibilityButton.textContent = isPasswordVisible ? 'Show Password' : 'Hide Password';
+  });
+  
   copyButton.addEventListener('click', function () {
     const password = passwordText.textContent.replace('Generated Password: ', '');
     navigator.clipboard.writeText(password)

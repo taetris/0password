@@ -44,6 +44,18 @@ body {
     font-weight: bold; 
   }
   
+  #togglePasswordVisibility {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+  }
+  
+  #togglePasswordVisibility:hover {
+    text-decoration: underline;
+  }
+  
   #copyButton {
     background-color: transparent;
     border: none;
