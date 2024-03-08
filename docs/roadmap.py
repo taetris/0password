@@ -6,6 +6,7 @@
     - at this point, kinda unsure what to do: we're following 2 tangents here: building an extension and an actually app
     - and both seem to be logically distinct from each other for this reason, will take this at hault here
 ----------------TO DO----------------------------
+    - pull functionality to be added
     - connect input to ui
     - hanlding no internet test case
     - first generate should also copy to clipboard
